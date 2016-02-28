@@ -1,31 +1,39 @@
 __author__ = 'sgulla'
 
 
-__author__ = 'sgulla'
 
 import unittest
 import json, time
 
+import sys
+import os
+
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+print(path)
+
 from selenium import webdriver
+from Configs.config_details import *
+
 from pages.mortgage import *
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
-
-
 class Loan_calculation(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
-        self.base_url = "http://www.calculator.net/mortgage-calculator.html"
+        self.base_url = url
 
     def test_calculate(self):
+
         driver = self.driver
         driver.get(self.base_url)
-        mortgage = mortgage_calculator(driver)
-        with open("mortgagedata") as data_file:
+
+        mortgagepage = mortgage_calculator(driver)
+
+
+        with open(path+"/data/mortgagedata.json") as data_file:
             data = json.load(data_file)
         home_price = data["homeprice"]
         print(home_price)
-        mortgage.set_home_price(home_price)
+        mortgagepage.set_home_price(home_price)
+
 
 
 
