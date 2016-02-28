@@ -6,4 +6,4 @@ class mortgage_calculator(object):
         self.driver=driver
     def set_home_price(self,price):
         self.driver.find_element_by_id("chouseprice").clear()
-        self.driver.find_element_by_id("chouseprice").send_keys()
+        self.driver.find_element_by_id("chouseprice").send_keys(price)
