@@ -15,6 +15,10 @@ from selenium import webdriver
 from Configs.config_details import *
 
 from pages.mortgage import *
+
+
+
+
 class Loan_calculation(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
@@ -31,8 +35,13 @@ class Loan_calculation(unittest.TestCase):
         with open(path+"/data/mortgagedata.json") as data_file:
             data = json.load(data_file)
         home_price = data["homeprice"]
+        payment = data["downpayment"]
         print(home_price)
+        print(payment)
+
         mortgagepage.set_home_price(home_price)
+
+        mortgagepage.set_down_payment(payment)
 
 
 
